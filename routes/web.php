@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ActividadUno;
 use App\Http\Controllers\CursoController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -63,4 +64,17 @@ Route::prefix('admin')->group(function () {
     # Metodo del controlador
     # Atributo name sirve para darle un nombre a la ruta
 Route::get('/getName/{name?}', [CursoController::class, 'getName'])->name('getName');
+
+/* Actividad 1 */
+Route::prefix('actividadUno')->group(function () {
+    Route::name('actividadUno.')->group(function () {
+        Route::get('/', [ActividadUno::class, 'index'])->name('index');
+        Route::get('/sumar/{x}/{y}', [ActividadUno::class, 'sumar'])->where(['x' => '[0-9]+', 'y' => '[0-9]+'])->name('sumar');
+        Route::get('/restar/{x}/{y}', [ActividadUno::class, 'restar'])->where(['x' => '[0-9]+', 'y' => '[0-9]+'])->name('restar');
+        Route::get('/multiplicar/{x}/{y}', [ActividadUno::class, 'multiplicar'])->where(['x' => '[0-9]+', 'y' => '[0-9]+'])->name('multiplicar');
+        Route::get('/dividir/{x}/{y}', [ActividadUno::class, 'dividir'])->where(['x' => '[0-9]+', 'y' => '[0-9]+'])->name('dividir');   
+    });
+
+});
+
 
