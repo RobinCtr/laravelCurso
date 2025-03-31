@@ -39,6 +39,8 @@
                     <a href="{{ route('actividadUno.dividir', ['x' => $x, 'y' => $y]) }}" class="btn btn-primary">Dividir</a>
                 </div>
 
+                <a href="{{route('admin_user.create')}}">Index</a>
+
             </div>
            
         </div>

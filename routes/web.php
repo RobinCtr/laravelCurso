@@ -1,9 +1,11 @@
 <?php
 
 use App\Http\Controllers\ActividadUno;
+use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\CursoController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Middleware\Suscribed;
 
 
 # Rutas basicas 
@@ -78,3 +80,23 @@ Route::prefix('actividadUno')->group(function () {
 });
 
 
+/* Rutas resource */
+Route::resource('user', AdminUserController::class)->parameters([
+    'users' => 'admin_user'
+])->names([
+    'index' => 'admin_user.index',
+    'create' => 'admin_user.create',
+    'store' => 'admin_user.store',
+    'show' => 'admin_user.show',
+    'edit' => 'admin_user.edit',
+    'update' => 'admin_user.update',
+    'destroy' => 'admin_user.destroy'
+]);
+
+
+/* Rutas con middleware */
+Route::get('/suscribed', function () {
+    return 'Bienvenido suscrito';
+})->middleware('suscribed')->name('suscribed');
+
+Route::get('/layout', [CursoController::class, 'index'])->name('layout');
