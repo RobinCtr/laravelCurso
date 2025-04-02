@@ -13,10 +13,7 @@ class alert extends Component
      */
     public function __construct(
         public string $type = 'info',
-        public string $message = 'Mensaje de alerta',
-        public string $title = 'Titulo de alerta',
-        public bool $dismissible = true,
-        public string $icon = 'fa-solid fa-circle-info'
+        public string $title = 'Mensaje de alerta',
     )
     {
         //
@@ -28,5 +25,16 @@ class alert extends Component
     public function render(): View|Closure|string
     {
         return view('components.alert');
+    }
+
+    public function lenguage($lan){
+        return [
+            'PHP',
+            'JavaScript',
+            'HTML',
+            'CSS',
+            'Java',
+            $lan,
+        ];
     }
 }
