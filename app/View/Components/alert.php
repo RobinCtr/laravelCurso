@@ -12,8 +12,8 @@ class alert extends Component
      * Create a new component instance.
      */
     public function __construct(
-        public string $type = 'info',
-        public string $title = 'Mensaje de alerta',
+        public string $type,
+        public string $message,
     )
     {
         //
@@ -24,7 +24,7 @@ class alert extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.alert');
+        return view('layouts.components.alert');
     }
 
     public function lenguage($lan){

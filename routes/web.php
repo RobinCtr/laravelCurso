@@ -3,6 +3,7 @@
 use App\Http\Controllers\ActividadUno;
 use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\CursoController;
+use App\Http\Controllers\PostController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\Suscribed;
@@ -100,3 +101,15 @@ Route::get('/suscribed', function () {
 })->middleware('suscribed')->name('suscribed');
 
 Route::get('/layout', [CursoController::class, 'index'])->name('layout');
+
+
+/* Funciones de post */
+Route::prefix('posts')->group(function () {
+    Route::name('posts.')->group(function () {
+        Route::get('/', [PostController::class, 'index'])->name('index');
+        Route::get('/create', [PostController::class, 'create'])->name('create');
+        Route::post('/', [PostController::class, 'store'])->name('store');
+        Route::get('/{id}', [PostController::class, 'show'])->name('show');
+    });
+
+});
