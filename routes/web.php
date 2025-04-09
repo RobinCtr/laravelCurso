@@ -4,6 +4,7 @@ use App\Http\Controllers\ActividadUno;
 use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\CursoController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\ProductsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\Suscribed;
@@ -110,6 +111,18 @@ Route::prefix('posts')->group(function () {
         Route::get('/create', [PostController::class, 'create'])->name('create');
         Route::post('/', [PostController::class, 'store'])->name('store');
         Route::get('/{id}', [PostController::class, 'show'])->name('show');
+    });
+
+});
+
+
+/* Funciones de post */
+Route::prefix('products')->group(function () {
+    Route::name('products.')->group(function () {
+        Route::get('/', [ProductsController::class, 'index'])->name('index');
+        Route::get('/create', [ProductsController::class, 'create'])->name('create');
+        Route::post('/', [ProductsController::class, 'store'])->name('store');
+        Route::get('/{id}', [ProductsController::class, 'show'])->name('show');
     });
 
 });
