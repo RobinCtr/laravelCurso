@@ -5,6 +5,7 @@ use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\CursoController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProductsController;
+use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\Suscribed;
@@ -126,3 +127,15 @@ Route::prefix('products')->group(function () {
     });
 
 });
+
+
+Route::prefix('users')->group(function () {
+    Route::name('users.')->group(function () {
+        Route::get('/', [UserController::class, 'index'])->name('index');
+        Route::get('/create', [UserController::class, 'create'])->name('create');
+        Route::post('/', [UserController::class, 'store'])->name('store');
+        Route::get('/{id}', [UserController::class, 'show'])->name('show');
+    });
+
+});
+
